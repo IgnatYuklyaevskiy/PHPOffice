@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHPOffice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="main.php" method="post">
+    <div class="form-container">
+        <h2>Заказ мебели</h2>
+
+        <div class="form-group">
+            <label for="lastname">Фамилия:</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Введите фамилию">
+        </div>
+
+        <div class="form-group">
+            <label for="city">Город доставки:</label>
+            <select id="city" name="city" required>
+                <option value="">Выберите город</option>
+                <option value="Москва">Москва</option>
+                <option value="Санкт-Петербург">Санкт-Петербург</option>
+                <option value="Новосибирск">Новосибирск</option>
+                <option value="Екатеринбург">Екатеринбург</option>
+                <option value="Нижний Новгород">Нижний Новгород</option>
+                <option value="Казань">Казань</option>
+                <option value="Самара">Самара</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="delivery-date">Дата доставки:</label>
+            <input type="date" id="delivery-date" name="delivery-date" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" id="address" name="address" placeholder="Введите адрес" required>
+        </div>
+
+        <div class="three-columns">
+            <div class="form-group">
+                <label>Цвет мебели:</label>
+                <label><input type="radio" name="color" value="Орех">Орех</label>
+                <label><input type="radio" name="color" value="Дуб морёный">Дуб морёный</label>
+                <label><input type="radio" name="color" value="Палисандр">Палисандр</label>
+                <label><input type="radio" name="color" value="Эбеновое дерево">Эбеновое дерево</label>
+                <label><input type="radio" name="color" value="Клён">Клён</label>
+                <label><input type="radio" name="color" value="Лиственница">Лиственница</label>
+            </div>
+
+            <div class="form-group">
+                <label>Предметы мебели:</label>
+                <label><input type="checkbox" name="furniture" value="Банкетка">Банкетка</label>
+                <label><input type="checkbox" name="furniture" value="Кровать">Кровать</label>
+                <label><input type="checkbox" name="furniture" value="Комод">Комод</label>
+                <label><input type="checkbox" name="furniture" value="Шкаф">Шкаф</label>
+                <label><input type="checkbox" name="furniture" value="Стул">Стул</label>
+                <label><input type="checkbox" name="furniture" value="Стол">Стол</label>
+            </div>
+
+            <div class="form-group">
+                <label>Количество:</label>
+                <input type="text" id="quantity_1" name="quantity_1">
+                <input type="text" id="quantity_2" name="quantity_2">
+                <input type="text" id="quantity_3" name="quantity_3">
+                <input type="text" id="quantity_4" name="quantity_3">
+                <input type="text" id="quantity_5" name="quantity_3">
+                <input type="text" id="quantity_6" name="quantity_3">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="file-input-label">
+                Выберите файл с ценами
+                <input type="file" id="price_file" accept=".xlsx,.xls">
+            </label>
+            <span id="selected_file_name"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit">Оформить заказ</button>
+        </div>
+    </div>
+</form>
+<script>
+    function updateFileName(input) {
+        document.getElementById('selected_file_name').textContent = input.files[0] ? input.files[0].name : '';
+    }
+    document.getElementById('price_file').addEventListener('change', function() {
+        updateFileName(this);
+    });
+</script>
+</body>
+</html>

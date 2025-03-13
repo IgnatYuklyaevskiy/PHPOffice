@@ -1,0 +1,75 @@
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.form-container h2 {
+    text-align: center;
+}
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.form-group label {
+    margin-right: 10px;
+    width: 150px;
+    font-weight: bold;
+}
+.form-group input, .form-group select {
+    flex: 1;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-group button:hover {
+    background-color: #218838;
+}
+.three-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+}
+.three-columns .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.three-columns .form-group label {
+    width: auto;
+    height: 34px;
+    margin-top: 8px;
+}
+.three-columns .form-group input[type="text"] {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.file-input-label {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.file-input-label:hover {
+    background-color: #218838;
+}
+input[type="file"] {
+    display: none;
+}
