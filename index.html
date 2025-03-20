@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form action="main.php" method="post">
+<form id="main_form" action="main.php" method="post" enctype="multipart/form-data">
     <div class="form-container">
         <h2>Заказ мебели</h2>
 
@@ -17,7 +17,7 @@
 
         <div class="form-group">
             <label for="city">Город доставки:</label>
-            <select id="city" name="city" required>
+            <select id="city" name="city">
                 <option value="">Выберите город</option>
                 <option value="Москва">Москва</option>
                 <option value="Санкт-Петербург">Санкт-Петербург</option>
@@ -31,12 +31,12 @@
 
         <div class="form-group">
             <label for="delivery-date">Дата доставки:</label>
-            <input type="date" id="delivery-date" name="delivery-date" required>
+            <input type="date" id="delivery-date" name="delivery-date">
         </div>
 
         <div class="form-group">
             <label for="address">Адрес:</label>
-            <input type="text" id="address" name="address" placeholder="Введите адрес" required>
+            <input type="text" id="address" name="address" placeholder="Введите адрес">
         </div>
 
         <div class="three-columns">
@@ -52,12 +52,12 @@
 
             <div class="form-group">
                 <label>Предметы мебели:</label>
-                <label><input type="checkbox" name="furniture" value="Банкетка">Банкетка</label>
-                <label><input type="checkbox" name="furniture" value="Кровать">Кровать</label>
-                <label><input type="checkbox" name="furniture" value="Комод">Комод</label>
-                <label><input type="checkbox" name="furniture" value="Шкаф">Шкаф</label>
-                <label><input type="checkbox" name="furniture" value="Стул">Стул</label>
-                <label><input type="checkbox" name="furniture" value="Стол">Стол</label>
+                <label><input type="checkbox" name="furniture_banquette" value="Банкетка">Банкетка</label>
+                <label><input type="checkbox" name="furniture_bed" value="Кровать">Кровать</label>
+                <label><input type="checkbox" name="furniture_dresser" value="Комод">Комод</label>
+                <label><input type="checkbox" name="furniture_closet" value="Шкаф">Шкаф</label>
+                <label><input type="checkbox" name="furniture_chair" value="Стул">Стул</label>
+                <label><input type="checkbox" name="furniture_table" value="Стол">Стол</label>
             </div>
 
             <div class="form-group">
@@ -65,15 +65,15 @@
                 <input type="text" id="quantity_1" name="quantity_1">
                 <input type="text" id="quantity_2" name="quantity_2">
                 <input type="text" id="quantity_3" name="quantity_3">
-                <input type="text" id="quantity_4" name="quantity_3">
-                <input type="text" id="quantity_5" name="quantity_3">
-                <input type="text" id="quantity_6" name="quantity_3">
+                <input type="text" id="quantity_4" name="quantity_4">
+                <input type="text" id="quantity_5" name="quantity_5">
+                <input type="text" id="quantity_6" name="quantity_6">
             </div>
         </div>
         <div class="form-group">
             <label class="file-input-label">
                 Выберите файл с ценами
-                <input type="file" id="price_file" accept=".xlsx,.xls">
+                <input type="file" name="price_file" id="price_file" accept=".docx">
             </label>
             <span id="selected_file_name"></span>
         </div>
@@ -82,12 +82,26 @@
         </div>
     </div>
 </form>
+<div id="result"></div>
 <script>
     function updateFileName(input) {
         document.getElementById('selected_file_name').textContent = input.files[0] ? input.files[0].name : '';
     }
     document.getElementById('price_file').addEventListener('change', function() {
         updateFileName(this);
+    });
+    document.getElementById('main_form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        fetch('main.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = data;
+            })
+            .catch(error => console.error('Ошибка:', error));
     });
 </script>
 </body>
